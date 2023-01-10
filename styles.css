@@ -7,6 +7,7 @@
 
 :root {
     font-size: 10px;
+    font-family: sans-serif;
     background-color: #1e1e1e;
 }
 
@@ -22,11 +23,27 @@ body {
     width: 30rem;
     height: 30rem;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 10rem);
+    grid-template-rows: repeat(3, 10rem);
     background-color: white;
+    color: white;
     gap: 0.2rem;
 }
 
 .cell {
+    user-select: none;
     background-color: #1e1e1e;
+    display: grid;
+    place-items: center;
+    font-size: 64px;
+}
+
+img {
+    filter: 
+    invert(100%)
+    sepia(0%) 
+    saturate(0%) 
+    hue-rotate(216deg) 
+    brightness(109%) 
+    contrast(101%);
 }
