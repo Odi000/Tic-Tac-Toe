@@ -9,6 +9,7 @@
     font-size: 10px;
     font-family: sans-serif;
     background-color: #1e1e1e;
+    color: white;
 }
 
 body {
@@ -17,6 +18,26 @@ body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+}
+
+.score-board {
+    opacity: 0;
+    position: absolute;
+    top: 3.5rem;
+    left: 3.5rem;
+    font-size: 3rem;
+    width: 6.8rem;
+    transition: opacity 0.8s;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    white-space: nowrap;
+}
+
+.row:last-child > img{
+    width: 90%;
 }
 
 .game {
