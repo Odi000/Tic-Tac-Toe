@@ -18,22 +18,36 @@ const winningComb = [
     const scoreBoard = document.querySelector('.score-board');
     const p1Points = document.getElementById('p1-points');
     const p2Points = document.getElementById('p2-points');
+    const nextRound = document.getElementById('next');
+
+    p1Points.textContent = player_1.points;
+    p2Points.textContent = player_2.points;
 
     let pTurn = player_1;
-    cells.forEach(cell => cell.onclick = () => {
-        if(cell.firstElementChild) return;
+    cells.forEach(cell => cell.onclick = drawXO);
+    
+    nextRound.onclick = () => {
+        cells.forEach(cell => {
+            cell.innerHTML = '';
+            cell.onclick = drawXO;
+        });
+    }
+
+    //Draw X and O on click
+    function drawXO() {
+        if(this.firstElementChild) return;
         if(pTurn === player_1){
-            cell.appendChild(player_1.sign());
+            this.appendChild(player_1.sign());
             pTurn = player_2;
             checkCells();
         } else {
-            cell.appendChild(player_2.sign());
+            this.appendChild(player_2.sign());
             pTurn = player_1;
             checkCells();
         }
-    })
+    }
 
-    //Check if someone won
+    //Check if we have a winner
     function checkCells() {
         console.log(scoreBoard)
         let winner;
@@ -51,22 +65,21 @@ const winningComb = [
         if(winner){
             cells.forEach(cell => cell.onclick = null);
             winner == 'x'? ++player_1.points: ++player_2.points;
-            scoreBoard.style.opacity = '1';
             p1Points.textContent = player_1.points;
             p2Points.textContent = player_2.points;
         }
     }
-})()
-
-//Create Player Factory Function
-function Player(signature) {
-    let points = 0;
-    const sign = function () {
-            const xo = document.createElement('img');
-            xo.src = `./images/${signature}.svg`;
-            xo.id = signature;
-            if(signature == 'o') xo.style.width = '90%';
-            return xo;
+    
+    //Create Player using Factory Function
+    function Player(signature) {
+        let points = 0;
+        const sign = function () {
+                const xo = document.createElement('img');
+                xo.src = `./images/${signature}.svg`;
+                xo.id = signature;
+                if(signature == 'o') xo.style.width = '90%';
+                return xo;
+        }
+        return {points, sign};
     }
-    return {points, sign};
-}
+})()
