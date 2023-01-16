@@ -49,7 +49,6 @@ const winningComb = [
 
     //Check if we have a winner
     function checkCells() {
-        console.log(scoreBoard)
         let winner;
         const control = winningComb.find(comb => {
             for(const i of comb) {
